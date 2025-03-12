@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
+import img from "./abouthome.jpg"
 
 export default function AboutSection() {
   return (
@@ -16,7 +17,7 @@ export default function AboutSection() {
             className="relative h-[400px] rounded-2xl overflow-hidden"
           >
             <Image
-              src="/images/about/company-building.jpg"
+              src="/images/abouthome.jpg"
               alt="Professional installation services"
               fill
               className="object-cover"

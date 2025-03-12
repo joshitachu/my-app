@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import img from "./about.jpg"
 import { CheckCircle, Award, Users, ThumbsUp } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-[400px] rounded-2xl overflow-hidden">
               <img
-                src="/placeholder.svg?height=800&width=1200"
+                src={img.src}
                 alt="Ertzan Loonbedrijf team"
                 className="w-full h-full object-cover"
               />
@@ -100,68 +101,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Team */}
-      <section className="py-16 bg-white dark:bg-slate-950">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-bold mb-12 text-center">Meet Our Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Jan Ertzan",
-                role: "Founder & CEO",
-                bio: "With over 20 years of experience in installation services, Jan leads our company with passion and expertise.",
-                image: "/images/team/jan-ertzan.jpg",
-              },
-              {
-                name: "Lisa van der Berg",
-                role: "Operations Manager",
-                bio: "Lisa ensures that all our installations run smoothly and efficiently, maintaining our high standards of quality.",
-                image: "/images/team/lisa-vanderberg.jpg",
-              },
-              {
-                name: "Pieter de Vries",
-                role: "Lead Technician",
-                bio: "Pieter brings 15 years of technical expertise to every project, specializing in complex installations.",
-                image: "/images/team/pieter-devries.jpg",
-              },
-              {
-                name: "Sophie Jansen",
-                role: "Customer Service Manager",
-                bio: "Sophie is dedicated to ensuring every customer has an exceptional experience with our company.",
-                image: "/images/team/sophie-jansen.jpg",
-              },
-              {
-                name: "Thomas Bakker",
-                role: "Technical Specialist",
-                bio: "Thomas is our expert in smart home technology and advanced electrical installations.",
-                image: "/images/team/thomas-bakker.jpg",
-              },
-              {
-                name: "Emma Visser",
-                role: "Scheduling Coordinator",
-                bio: "Emma manages our busy installation schedule, ensuring timely service for all our customers.",
-                image: "/images/team/emma-visser.jpg",
-              },
-            ].map((member, index) => (
-              <div key={index} className="bg-slate-50 dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm">
-                <div className="relative h-64">
-                  <img
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-blue-600 dark:text-blue-400 mb-3">{member.role}</p>
-                  <p className="text-slate-600 dark:text-slate-400">{member.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       {/* Testimonials */}
       <section className="py-16 bg-slate-50 dark:bg-slate-900">
         <div className="container mx-auto px-4 md:px-6">
@@ -212,29 +152,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">Ready to Experience Our Service?</h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
-            Contact us today to schedule your installation or request a quote.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-full font-semibold text-lg"
-            >
-              Contact Us
-            </a>
-            <a
-              href="/services"
-              className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-full font-semibold text-lg"
-            >
-              View Services
-            </a>
-          </div>
-        </div>
-      </section>
+      
     </div>
   )
 }
