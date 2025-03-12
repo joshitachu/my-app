@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+// Define the form schema
 const formSchema = z.object({
   firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
   lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
@@ -20,8 +21,17 @@ const formSchema = z.object({
   notes: z.string().optional(),
 })
 
-export default function CustomerInfoForm({ initialData, onSubmit }) {
-  const form = useForm({
+// Export the type based on the schema
+export type CustomerFormValues = z.infer<typeof formSchema>
+
+// Define prop types for the component
+interface CustomerInfoFormProps {
+  initialData: CustomerFormValues;
+  onSubmit: (data: CustomerFormValues) => void;
+}
+
+export default function CustomerInfoForm({ initialData, onSubmit }: CustomerInfoFormProps) {
+  const form = useForm<CustomerFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       firstName: "",
@@ -198,4 +208,3 @@ export default function CustomerInfoForm({ initialData, onSubmit }) {
     </div>
   )
 }
-

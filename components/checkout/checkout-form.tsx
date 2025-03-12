@@ -4,11 +4,19 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useCart } from "@/context/cart-context"
 import OrderSummary from "./order-summary"
-import CustomerInfoForm from "./customer-info-form"
+import CustomerInfoForm, { CustomerFormValues } from "./customer-info-form"
 import PaymentForm from "./payment-form"
 import OrderConfirmation from "./order-confirmation"
 import { Check } from "lucide-react"
 import { toast } from "@/components/ui/use-toast"
+
+// Define payment information type
+interface PaymentInfo {
+  cardName: string
+  cardNumber: string
+  expiryDate: string
+  cvv: string
+}
 
 const steps = [
   { id: "customer-info", name: "Customer Information" },
@@ -19,7 +27,7 @@ const steps = [
 export default function CheckoutForm() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
-  const [customerInfo, setCustomerInfo] = useState({
+  const [customerInfo, setCustomerInfo] = useState<CustomerFormValues>({
     firstName: "",
     lastName: "",
     email: "",
@@ -28,9 +36,9 @@ export default function CheckoutForm() {
     city: "",
     postalCode: "",
     country: "Netherlands",
-    notes: "",
+    notes: "", // This will now be compatible with the CustomerFormValues type
   })
-  const [paymentInfo, setPaymentInfo] = useState({
+  const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
     cardName: "",
     cardNumber: "",
     expiryDate: "",
@@ -52,12 +60,12 @@ export default function CheckoutForm() {
     }
   }, [items.length, currentStep, router])
 
-  const handleCustomerInfoSubmit = (data) => {
+  const handleCustomerInfoSubmit = (data: CustomerFormValues) => {
     setCustomerInfo(data)
     nextStep()
   }
 
-  const handlePaymentInfoSubmit = (data) => {
+  const handlePaymentInfoSubmit = (data: PaymentInfo) => {
     setPaymentInfo(data)
     nextStep()
     processOrder()
@@ -159,4 +167,3 @@ export default function CheckoutForm() {
     </div>
   )
 }
-

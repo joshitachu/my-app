@@ -1,10 +1,22 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Loader2 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { CustomerFormValues } from "./customer-info-form"
 
-export default function OrderConfirmation({ customerInfo, orderNumber, isLoading, onComplete }) {
+interface OrderConfirmationProps {
+  customerInfo: CustomerFormValues;
+  orderNumber: string;
+  isLoading: boolean;
+  onComplete: () => void;
+}
+
+export default function OrderConfirmation({ 
+  customerInfo, 
+  orderNumber, 
+  isLoading, 
+  onComplete 
+}: OrderConfirmationProps) {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center py-12">
@@ -16,7 +28,7 @@ export default function OrderConfirmation({ customerInfo, orderNumber, isLoading
       </div>
     )
   }
-
+  
   return (
     <div className="py-6">
       <div className="flex flex-col items-center justify-center mb-8">
@@ -31,9 +43,9 @@ export default function OrderConfirmation({ customerInfo, orderNumber, isLoading
           <span className="ml-2 font-semibold">{orderNumber}</span>
         </div>
       </div>
-
+      
       <Separator className="my-6" />
-
+      
       <div className="mb-8">
         <h3 className="text-lg font-semibold mb-4">Customer Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -54,7 +66,6 @@ export default function OrderConfirmation({ customerInfo, orderNumber, isLoading
             <p>{customerInfo.country}</p>
           </div>
         </div>
-
         {customerInfo.notes && (
           <div className="mt-4">
             <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400">Special Instructions</h4>
@@ -62,7 +73,7 @@ export default function OrderConfirmation({ customerInfo, orderNumber, isLoading
           </div>
         )}
       </div>
-
+      
       <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-8">
         <h3 className="font-medium mb-2">What happens next?</h3>
         <ol className="list-decimal list-inside space-y-2 text-sm text-slate-700 dark:text-slate-300">
@@ -72,7 +83,7 @@ export default function OrderConfirmation({ customerInfo, orderNumber, isLoading
           <li>After the installation is complete, you'll have an opportunity to inspect the work.</li>
         </ol>
       </div>
-
+      
       <div className="flex justify-center">
         <Button onClick={onComplete} className="bg-blue-600 hover:bg-blue-700 px-8" size="lg">
           Complete
@@ -81,4 +92,3 @@ export default function OrderConfirmation({ customerInfo, orderNumber, isLoading
     </div>
   )
 }
-

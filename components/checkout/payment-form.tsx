@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, CreditCard, Lock } from "lucide-react"
 
+// Define the form schema
 const formSchema = z.object({
   cardName: z.string().min(2, { message: "Please enter the name on card." }),
   cardNumber: z
@@ -23,8 +24,19 @@ const formSchema = z.object({
     .regex(/^[0-9]+$/, { message: "CVV must contain only numbers." }),
 })
 
-export default function PaymentForm({ initialData, onSubmit, onBack, isLoading }) {
-  const form = useForm({
+// Export the type based on the schema
+export type PaymentFormValues = z.infer<typeof formSchema>
+
+// Define props interface
+interface PaymentFormProps {
+  initialData: PaymentFormValues;
+  onSubmit: (data: PaymentFormValues) => void;
+  onBack: () => void;
+  isLoading: boolean;
+}
+
+export default function PaymentForm({ initialData, onSubmit, onBack, isLoading }: PaymentFormProps) {
+  const form = useForm<PaymentFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       cardName: "",
@@ -35,7 +47,7 @@ export default function PaymentForm({ initialData, onSubmit, onBack, isLoading }
   })
 
   // Format card number with spaces
-  const formatCardNumber = (value) => {
+  const formatCardNumber = (value: string): string => {
     const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "")
     const matches = v.match(/\d{4,16}/g)
     const match = (matches && matches[0]) || ""
@@ -53,7 +65,7 @@ export default function PaymentForm({ initialData, onSubmit, onBack, isLoading }
   }
 
   // Format expiry date
-  const formatExpiryDate = (value) => {
+  const formatExpiryDate = (value: string): string => {
     const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "")
 
     if (v.length >= 2) {
@@ -164,4 +176,3 @@ export default function PaymentForm({ initialData, onSubmit, onBack, isLoading }
     </div>
   )
 }
-

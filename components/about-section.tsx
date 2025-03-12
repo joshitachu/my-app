@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import img from "./abouthome.jpg"
 
 export default function AboutSection() {
   return (
