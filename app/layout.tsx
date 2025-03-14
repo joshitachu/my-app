@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Ertzan Loonbedrijf - Professional Installation Services",
   description: "Expert installation services for TV mounting, electrical work, air conditioning, and smart home setup",
 }
+
 export default function RootLayout({
   children,
 }: {
@@ -20,20 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <style dangerouslySetInnerHTML={{__html: `
-          /* Override the problematic styles */
-          * {
-            background: none !important;
-            color: inherit !important;
-          }
-          body {
-            background: white !important;
-            color: black !important;
-          }
-        `}} />
-      </head>
-      <body className={`${inter.className} min-h-screen`}>
+      <body className={inter.className}>
         <CartProvider>
           <Navbar />
           <div className="pt-16 md:pt-20 min-h-screen flex flex-col">
@@ -46,3 +34,4 @@ export default function RootLayout({
     </html>
   )
 }
+
