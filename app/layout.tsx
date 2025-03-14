@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="h-full">
+      <body className={`${inter.className} min-h-screen bg-background text-foreground`}>
         <CartProvider>
           <Navbar />
           <div className="pt-16 md:pt-20 min-h-screen flex flex-col">
@@ -34,4 +34,3 @@ export default function RootLayout({
     </html>
   )
 }
-
