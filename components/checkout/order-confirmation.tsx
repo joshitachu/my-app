@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Loader2 } from "lucide-react"

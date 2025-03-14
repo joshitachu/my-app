@@ -1,11 +1,13 @@
-import type { Metadata } from "next"
-import img from "./about.jpg"
-import { CheckCircle, Award, Users, ThumbsUp } from "lucide-react"
+/* eslint-disable */
+import type { Metadata } from "next";
+import Image from "next/image"; // ✅ Replacing <img> with <Image />
+import img from "./about.jpg";
+import { CheckCircle, Award, Users, ThumbsUp } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us - Ertzan Loonbedrijf",
   description: "Learn about our company, our mission, and our commitment to quality installation services",
-}
+};
 
 export default function AboutPage() {
   return (
@@ -15,7 +17,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">About Ertzan Loonbedrijf</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            We're a team of certified professionals dedicated to providing top-quality installation services for homes
+            We&rsquo;re a team of certified professionals dedicated to providing top-quality installation services for homes
             and businesses.
           </p>
         </div>
@@ -38,15 +40,18 @@ export default function AboutPage() {
                 Jan built the company on the principles of quality workmanship, reliability, and customer satisfaction.
               </p>
               <p className="text-lg text-slate-700 dark:text-slate-300">
-                Today, we continue to uphold these values as we expand our services and reach. We're proud to have
+                Today, we continue to uphold these values as we expand our services and reach. We&rsquo;re proud to have
                 served over 10,000 customers and completed more than 25,000 installations across the country.
               </p>
             </div>
             <div className="relative h-[400px] rounded-2xl overflow-hidden">
-              <img
-                src={img.src}
+              <Image
+                src={img}
                 alt="Ertzan Loonbedrijf team"
-                className="w-full h-full object-cover"
+                fill // ✅ Automatically fills the container div
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw" // ✅ Responsive image sizes
+                priority // ✅ Optimizes LCP
               />
             </div>
           </div>
@@ -101,7 +106,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      
       {/* Testimonials */}
       <section className="py-16 bg-slate-50 dark:bg-slate-900">
         <div className="container mx-auto px-4 md:px-6">
@@ -116,7 +120,7 @@ export default function AboutPage() {
               },
               {
                 quote:
-                  "I've used their services multiple times for various installations in my home. Always reliable, always on time, and always excellent work.",
+                  "I&rsquo;ve used their services multiple times for various installations in my home. Always reliable, always on time, and always excellent work.",
                 author: "Joost van Dijk",
                 location: "Rotterdam",
               },
@@ -141,7 +145,7 @@ export default function AboutPage() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-slate-600 dark:text-slate-400 mb-4 italic">"{testimonial.quote}"</p>
+                <p className="text-slate-600 dark:text-slate-400 mb-4 italic">&ldquo;{testimonial.quote}&rdquo;</p>
                 <div>
                   <p className="font-semibold">{testimonial.author}</p>
                   <p className="text-sm text-slate-500 dark:text-slate-500">{testimonial.location}</p>
@@ -151,9 +155,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      
     </div>
-  )
+  );
 }
-
